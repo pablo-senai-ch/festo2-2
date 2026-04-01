@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festo - Sistema Automatizado</title>
+    <style>
+        /* ===== BODY ===== */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(90deg, #003366, #0055A5);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #003366;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .header-text p {
+            margin: 0;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            text-align: center;
+            padding: 12px;
+            background: rgba(17, 17, 17, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 80px;
+            z-index: 900;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 18px;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 50px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        /* ===== BUTTONS ===== */
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            width: 200px;
+            height: 50px;
+            margin: 10px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .start {
+            background: #2ecc71;
+        }
+
+        .stop {
+            background: #e74c3c;
+        }
+
+        .manual {
+            background: #3498db;
+        }
+
+        /* ===== STATUS ===== */
+        .status {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #f1c40f;
+            text-align: center;
+        }
+
+        /* ===== STEPS ===== */
+        .step {
+            margin: 20px 0;
+            padding: 20px;
+            border-left: 6px solid #3498db;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: 0.3s;
+        }
+
+        .step:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== IMAGENS ===== */
+        .imagem-card {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .imagem-card img {
+            border-radius: 12px;
+            margin: 10px 0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .imagem-card img:hover {
+            transform: scale(1.03);
+        }
+
+        .imagem-card p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #f1c40f;
+        }
+
+        .nav-buttons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-buttons button {
+            padding: 10px 18px;
+            font-size: 14px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #1d6fa5;
+            transform: translateY(-2px);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(17, 17, 17, 0.95);
+            margin-top: 40px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .header-text h1 {
+                font-size: 18px;
+            }
+
+            .header-text p {
+                font-size: 11px;
+            }
+
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+
+            button {
+                width: 150px;
+                height: 45px;
+                font-size: 14px;
+            }
+
+            .step {
+                padding: 15px;
+            }
+
+            .imagem-card img {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-left">
+            <div class="logo">SENAI</div>
+            <div class="header-text">
+                <h1>Sistema Automatizado de Manipulação</h1>
+                <p>Projeto Acadêmico - Automação Industrial</p>
+            </div>
+        </div>
+        <div>
+            <p style="margin:0;font-size:12px;opacity:0.8;">Instituição de Ensino Técnico</p>
+        </div>
+    </header>
+
+    <!-- ===== NAV ===== -->
+    <nav>
+        <a href="#sobre">Sobre</a>
+        
+        <a href="index2.html">Processo</a>
+        <a href="#controle">Controle</a>
+        <a href="#imagens">Imagens</a>
+    </nav>
+
+    <!-- ===== SOBRE ===== -->
+    <section id="sobre">
+        <div class="card">
+            <h2>Sobre a Bancada Festo 2</h2>
+            <p>
+                A Festo 2 é uma das bancadas de estudos do SENAI, utilizada para fins acadêmicos na área de automação industrial.
+                Este sistema simula um alimentador de peças industrial, permitindo o aprendizado prático de processos automatizados.
+            </p>
+            <p>
+                O equipamento possui como principais componentes mecânicos um atuador pneumático com magazine, um atuador pneumático rotativo e uma ventosa,
+                responsáveis pela manipulação das peças durante o processo.
+            </p>
+            <p>
+                Seu funcionamento é baseado na integração de sistemas elétricos e pneumáticos, enquanto sua lógica de controle é realizada por meio de um CLP
+                (Controlador Lógico Programável), amplamente utilizado na indústria.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== CONTROLE ===== -->
+    <section id="controle">
+        <div class="card">
+            <h2>Painel de Controle</h2>
+            <div class="buttons">
+                <p>Fluxo ilustrativo de operação (botões demonstrativos):</p>
+                <button class="start" disabled>START</button>
+                <button class="stop" disabled>STOP</button>
+                <br>
+                <button class="manual" disabled>1. Magazine (Alimentação)</button>
+                <button class="manual" disabled>2. Avançar Braço</button>
+                <button class="manual" disabled>3. Ativar Vácuo</button>
+                <button class="manual" disabled>4. Retornar Braço</button>
+                <button class="manual" disabled>5. Desativar Vácuo</button>
+                <button class="manual" disabled>6. Sopro (Liberação)</button>
+
+                <div class="status">Sequência didática: siga os botões da esquerda para a direita para entender o ciclo.</div>
+            </div>
+            <div id="status" class="status">Status: aguardando comando...</div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESSO ===== -->
+    <section id="processo">
+        <div class="card">
+            <h2>Sequência de Operação</h2>
+            <div class="step"><b>1 - Detecção inicial</b><br>
+                O sistema verifica automaticamente a presença de peças através de sensores instalados no final do tubo.
+            </div>
+            <div class="step"><b>2 - Monitoramento</b><br>
+                Durante o avanço da alimentação, ocorre o monitoramento contínuo entre sensores de início e fim de curso.
+            </div>
+            <div class="step"><b>3 - Posicionamento</b><br>
+                Após a confirmação da peça, o braço mecânico é liberado respeitando os limites de segurança.
+            </div>
+            <div class="step"><b>4 - Captura da peça</b><br>
+                O braço avança até o fim de curso, ativando o sistema de vácuo para fixação da peça.
+            </div>
+            <div class="step"><b>5 - Retorno</b><br>
+                Com a peça fixada, o braço retorna à posição inicial de forma controlada.
+            </div>
+            <div class="step"><b>6 - Temporização</b><br>
+                Uma pausa é aplicada para garantir estabilidade antes da liberação.
+            </div>
+            <div class="step"><b>7 - Liberação</b><br>
+                O sistema libera a peça com precisão e se prepara automaticamente para o próximo ciclo.
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== IMAGENS ===== -->
+    <section id="imagens">
+        <div class="imagem-card">
+            <h2>Vista Geral do Sistema</h2>
+            <img src="Image_20260312_103946_510.jpeg" alt="Vista Geral do Sistema Festo">
+            <p>Mostra a bancada completa Festo 2, incluindo atuador pneumático, magazine e braço manipulador.</p>
+        </div>
+        <div class="imagem-card">
+            <h2>Braço Mecânico em Movimento</h2>
+            <img src="Image_20260312_103951_211 (1).jpeg" alt="Braço Mecânico">
+            <p>Exibe o braço pneumático avançando para capturar a peça do magazine, mostrando transporte automatizado.SENSOR FIM DE CURSO.</p>
+        </div>
+        <div class="imagem-card">
+            <h2>Atuador Pneumático e Ventosa</h2>
+            <img src="Image_20260319_103934_918 (1).jpeg" alt="Atuador e Ventosa">
+            <p>Close nos componentes principais responsáveis pela fixação e liberação das peças, mostrando a integração mecânica e pneumática.ESP32.</p>
+        </div>
+        <div class="imagem-card">
+            <h2>Sensor de Barreira</h2>
+            <img src="./imagem 1.jpg" alt="Sensor de Barreira">
+            <p>O sensor de barreira se ativa quando detecta alguma peça.</p>
+        </div>
+        <div class="imagem-card">
+            <h2>Braço Mecânico</h2>
+            <img src="./imagem 2.jpg" alt="Braco Mecanico">
+            <p>O braço mecânico se ativa quando o magazine leva a peça até o sensor red switch.</p>
+        </div>
+    </section>
+
+    <!-- ===== VÍDEO ===== -->
+    <section id="video">
+        <h2>Vídeo Demonstrativo do Sistema</h2>
+    <video width="640" height="360" controls>
+        <source src="./Video_20260319_112414_538.mp4" type="video/mp4">
+        <source src="./Video_20260319_112414_538.mp4" type="video/webm">
+        Seu navegador não suporta a tag de vídeo.
+    </video>
+        <p>
+            Este vídeo mostra o ciclo completo da Bancada Festo 2, incluindo alimentação, manipulação e liberação de peças.
+        </p>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        © 2026 - Sistema Automatizado Festo
+    </footer>
+
+</body>
+
+</html>
